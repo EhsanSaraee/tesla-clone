@@ -12,6 +12,19 @@ const Menu = () => {
    );
 };
 
-const MenuContainer = styled.section``;
+const MenuContainer = styled.section`
+   position: fixed;
+   overflow-y: scroll;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   padding: 70px 20px 20px 20px;
+   background-color: white;
+   z-index: 1;
+   display: flex;
+   flex-direction: column;
+   min-width: 280px;
+   gap: 25px;
+`;
 
 export default Menu;
