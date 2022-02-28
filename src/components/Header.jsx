@@ -24,8 +24,12 @@ const Header = ({ isMenuOpen, setIsMenuOpen }) => {
             <MenuLink to="/">Solar Panels</MenuLink>
          </HeaderLinks>
          <HeaderRight>
-            <RightMenuLink to="/">Shop</RightMenuLink>
-            <RightMenuLink to="/login">Tesla Account</RightMenuLink>
+            <RightMenuLink isMenuOpen={isMenuOpen} to="/">
+               Shop
+            </RightMenuLink>
+            <RightMenuLink isMenuOpen={isMenuOpen} to="/login">
+               Tesla Account
+            </RightMenuLink>
             <HeaderMenu onClick={() => setIsMenuOpen(!isMenuOpen)}>
                {isMenuOpen ? <CloseIcon /> : <MenuRoundedIcon />}
             </HeaderMenu>
@@ -80,6 +84,7 @@ const HeaderRight = styled.div`
 `;
 
 const RightMenuLink = styled(Link)`
+   visibility: ${({ isMenuOpen }) => (isMenuOpen ? 'hidden' : null)};
    ${LinkStyles}
    z-index: 0;
    position: relative;
