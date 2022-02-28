@@ -25,6 +25,13 @@ const MenuContainer = styled.section`
    flex-direction: column;
    min-width: 280px;
    gap: 25px;
+
+   -ms-overflow-style: none;
+   scrollbar-width: none;
+
+   ::-webkit-scrollbar {
+      display: none;
+   }
 `;
 
 export default Menu;
