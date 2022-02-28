@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import './App.css';
 import Header from './components/Header';
 
 const App = () => {
@@ -8,9 +7,7 @@ const App = () => {
 
    return (
       <BrowserRouter>
-         <div className="App">
-            <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-         </div>
+         <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       </BrowserRouter>
    );
 };
