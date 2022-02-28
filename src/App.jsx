@@ -1,10 +1,17 @@
+import { useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
+import Header from './components/Header';
 
 const App = () => {
+   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
    return (
-      <div className="App">
-         <h1>Tesla Clone</h1>
-      </div>
+      <BrowserRouter>
+         <div className="App">
+            <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+         </div>
+      </BrowserRouter>
    );
 };
 
