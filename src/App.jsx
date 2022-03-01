@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import HeaderBlock from './components/HeaderBlock';
 import Menu from './components/Menu';
@@ -11,9 +11,17 @@ const App = () => {
    return (
       <BrowserRouter>
          <AppContainer>
-            <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-            {isMenuOpen && <Menu />}
-            <HeaderBlock />
+            <Routes>
+               <Route path="/">
+                  <Header
+                     isMenuOpen={isMenuOpen}
+                     setIsMenuOpen={setIsMenuOpen}
+                  />
+                  {isMenuOpen && <Menu />}
+                  <HeaderBlock />
+               </Route>
+               <Route path='/login' element={<Login />} />
+            </Routes>
          </AppContainer>
       </BrowserRouter>
    );
