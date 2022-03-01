@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Header from './components/Header';
-import HeaderBlock from './components/HeaderBlock';
-import Menu from './components/Menu';
+import HeaderMenu from './components/HeaderMenu';
+import Login from './components/Login';
 
 const App = () => {
    const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,15 +11,16 @@ const App = () => {
       <BrowserRouter>
          <AppContainer>
             <Routes>
-               <Route path="/">
-                  <Header
-                     isMenuOpen={isMenuOpen}
-                     setIsMenuOpen={setIsMenuOpen}
-                  />
-                  {isMenuOpen && <Menu />}
-                  <HeaderBlock />
-               </Route>
-               <Route path='/login' element={<Login />} />
+               <Route
+                  path="/"
+                  element={
+                     <HeaderMenu
+                        isMenuOpen={isMenuOpen}
+                        setIsMenuOpen={setIsMenuOpen}
+                     />
+                  }
+               />
+               <Route path="/login" element={<Login />} />
             </Routes>
          </AppContainer>
       </BrowserRouter>

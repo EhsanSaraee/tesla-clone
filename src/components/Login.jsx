@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import { useState } from 'react';
-import Button from './Button';
+import ButtonPrimary from './ButtonPrimary';
+import ButtonSecondary from './ButtonSecondary';
 
 const Login = () => {
    const [email, setEmail] = useState('');
@@ -16,7 +17,7 @@ const Login = () => {
       <LoginContainer>
          <LoginHeader>
             <LoginLogo>
-               <Link>
+               <Link to="/">
                   <img
                      src="https://assets.website-files.com/5e8fceb1c9af5c3915ec97a0/5ec2f037975ed372da9f6286_Tesla-Logo-PNG-HD.png"
                      alt="Logo"
@@ -44,23 +45,122 @@ const Login = () => {
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                />
-               <Button name="Sign In" type="submit" onClick={signIn}></Button>
+               <ButtonPrimary name="Sign In" type="submit" onClick={signIn} />
             </LoginForm>
+            <LoginDivider>
+               <hr /> <span>OR</span> <hr />
+            </LoginDivider>
+            <Link to="/sign-up">
+               <ButtonSecondary name="Create Account" />
+            </Link>
          </LoginInfo>
       </LoginContainer>
    );
 };
 
-const LoginContainer = styled.section``;
+const LoginContainer = styled.section`
+   padding: 25px;
+   padding-top: 15px;
+   height: 100vh;
+   gap: 70px;
+   display: flex;
+   flex-direction: column;
+`;
 
-const LoginHeader = styled.div``;
+const LoginHeader = styled.div`
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   position: sticky;
+   top: 0;
+`;
 
-const LoginLogo = styled.div``;
+const LoginLogo = styled.div`
+   a {
+      img {
+         object-fit: contain;
+         width: 90px;
+      }
+   }
+`;
 
-const LoginLanguage = styled.div``;
+const LoginLanguage = styled.div`
+   display: flex;
+   align-items: flex-end;
+   gap: 5px;
+   padding: 5px 10px;
+   cursor: pointer;
+   border-radius: 50px;
+   font-size: 15px;
+   transition: all 0.2s;
 
-const LoginInfo = styled.div``;
+   span {
+      font-weight: 500;
+   }
 
-const LoginForm = styled.form``;
+   &:hover {
+      background-color: hsla(0, 0%, 50%, 0.125);
+   }
+`;
+
+const LoginInfo = styled.div`
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   min-width: 330px;
+   margin-left: auto;
+   margin-right: auto;
+
+   h2 {
+      font-size: 40px;
+      font-weight: 500;
+      margin-left: -10px;
+   }
+`;
+
+const LoginForm = styled.form`
+   display: flex;
+   flex-direction: column;
+
+   label {
+      color: #5c5e62;
+      font-size: 15px;
+      font-weight: 500;
+      padding-left: 20px;
+   }
+
+   input {
+      margin-bottom: 30px;
+      background-color: #f4f4f4;
+      border: 1px solid #f4f4f4;
+      outline: none;
+      border-radius: 50px;
+      padding: 12px 20px;
+      color: #393c41;
+      font-weight: 600;
+
+      &:focus {
+         border: 1px solid #d6d6d6;
+         transition: all 0.2s;
+      }
+   }
+`;
+
+const LoginDivider = styled.div`
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 20px;
+
+   hr {
+      width: 40%;
+      height: 0;
+      opacity: 0.3;
+   }
+
+   span {
+      font-weight: 500;
+      color: #5c5e62;
+   }
+`;
 
 export default Login;
