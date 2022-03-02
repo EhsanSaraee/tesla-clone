@@ -1,11 +1,14 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import HeaderMenu from './components/HeaderMenu';
 import Login from './components/Login';
+import { selectUser } from './features/userSlice';
 
 const App = () => {
    const [isMenuOpen, setIsMenuOpen] = useState(false);
+   const user = useSelector(selectUser);
 
    return (
       <BrowserRouter>
@@ -20,7 +23,10 @@ const App = () => {
                      />
                   }
                />
-               <Route path="/login" element={<Login />} />
+               <Route
+                  path="/login"
+                  element={user ? <Navigate to="\tesla-account" /> : <Login />}
+               />
             </Routes>
          </AppContainer>
       </BrowserRouter>
