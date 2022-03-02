@@ -1,11 +1,26 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import Car from './Car';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout, selectUser } from '../features/userSlice';
+import { auth } from '../firebase';
 
 const TeslaAccount = ({ isMenuOpen, setIsMenuOpen }) => {
-   const logout = () => {};
+   const user = useSelector(selectUser);
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
+
+   const signOut = async () => {
+      try {
+         await auth.signOut();
+         dispatch(logout());
+         navigate('/');
+      } catch (error) {
+         alert(error.message);
+      }
+   };
 
    return (
       <TeslaAccountContainer>
@@ -27,7 +42,7 @@ const TeslaAccount = ({ isMenuOpen, setIsMenuOpen }) => {
                <Link to="/tesla-account">Solar Panels</Link>
                <Link to="/tesla-account">Shop</Link>
                <Link to="/tesla-account">Tesla Account</Link>
-               <Link onClick={logout}>Logout</Link>
+               <Link onClick={signOut}>Logout</Link>
                <TeslaAccountMenu onClick={() => setIsMenuOpen(!isMenuOpen)}>
                   {isMenuOpen ? <TeslaAccountCloseMenu /> : <MenuRoundedIcon />}
                </TeslaAccountMenu>
@@ -35,13 +50,13 @@ const TeslaAccount = ({ isMenuOpen, setIsMenuOpen }) => {
          </TeslaAccountHeader>
          <TeslaAccountInfo>
             <TeslaAccountPerson>
-               <h4>Tesla</h4>
+               <h4>{user?.displayName + "'s"} Tesla</h4>
             </TeslaAccountPerson>
             <TeslaAccountInfoRight>
                <Link>Home</Link>
                <Link>Account</Link>
                <Link>History</Link>
-               <Link onClick={logout}>Sign out</Link>
+               <Link onClick={signOut}>Sign out</Link>
             </TeslaAccountInfoRight>
          </TeslaAccountInfo>
          <TeslaAccountCar>
