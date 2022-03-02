@@ -19,7 +19,7 @@ const BtnPrimary = styled.button`
    text-transform: uppercase;
    font-weight: 600;
    cursor: pointer;
-   margin-bottom: 30px;
+   margin-bottom: 10px;
    transition: all 0.2s ease-in-out;
 
    &:hover {

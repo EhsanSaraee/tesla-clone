@@ -1,11 +1,8 @@
-import { Link, useNavigate } from 'react-router-dom';
-import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import ButtonPrimary from './ButtonPrimary';
 import ButtonSecondary from './ButtonSecondary';
-import { useDispatch } from 'react-redux';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { login } from '../features/userSlice';
 import {
    UserContainer,
    UserDivider,
@@ -15,29 +12,15 @@ import {
    UserLanguage,
    UserLogo,
 } from './styledComponents/user';
+import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 
-const Login = () => {
+const SignUp = () => {
+   const [firstName, setFirstName] = useState('');
+   const [lastName, setLastName] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const dispatch = useDispatch();
    const navigate = useNavigate();
-
-   const signIn = async (event) => {
-      event.preventDefault();
-      try {
-         const userAuth = await signInWithEmailAndPassword(email, password);
-         dispatch(
-            login({
-               email: userAuth.user.email,
-               uid: userAuth.user.uid,
-               displayName: userAuth.user.displayName,
-            })
-         );
-         navigate('/tesla-account');
-      } catch (error) {
-         console.log(error.message);
-      }
-   };
 
    return (
       <UserContainer>
@@ -55,8 +38,22 @@ const Login = () => {
             </UserLanguage>
          </UserHeader>
          <UserInfo>
-            <h2>Sign In</h2>
+            <h2>Sign Up</h2>
             <UserForm>
+               <label htmlFor="firstName">First Name</label>
+               <input
+                  type="text"
+                  id="firstName"
+                  value={firstName}
+                  onChange={(event) => setFirstName(event.target.value)}
+               />
+               <label htmlFor="lastName">Last Name</label>
+               <input
+                  type="text"
+                  id="lastName"
+                  value={lastName}
+                  onChange={(event) => setLastName(event.target.value)}
+               />
                <label htmlFor="email">Email Address</label>
                <input
                   type="email"
@@ -71,17 +68,17 @@ const Login = () => {
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                />
-               <ButtonPrimary name="Sign In" type="submit" onClick={signIn} />
+               <ButtonPrimary name="Sign Up" type="submit" />
             </UserForm>
             <UserDivider>
                <hr /> <span>OR</span> <hr />
             </UserDivider>
-            <Link to="/sign-up">
-               <ButtonSecondary name="Create Account" />
+            <Link to="/login">
+               <ButtonSecondary name="Sign In" />
             </Link>
          </UserInfo>
       </UserContainer>
    );
 };
 
-export default Login;
+export default SignUp;

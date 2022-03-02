@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import HeaderMenu from './components/HeaderMenu';
 import Login from './components/Login';
+import SignUp from './components/SignUp';
 import { selectUser } from './features/userSlice';
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
                   path="/login"
                   element={user ? <Navigate to="\tesla-account" /> : <Login />}
                />
+               <Route path="/sign-up" element={<SignUp />} />
             </Routes>
          </AppContainer>
       </BrowserRouter>
