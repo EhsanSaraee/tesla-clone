@@ -13,6 +13,8 @@ import {
    UserLogo,
 } from './styledComponents/user';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { login } from '../features/userSlice';
 
 const SignUp = () => {
    const [firstName, setFirstName] = useState('');
@@ -21,6 +23,35 @@ const SignUp = () => {
    const [password, setPassword] = useState('');
    const dispatch = useDispatch();
    const navigate = useNavigate();
+
+   const signUp = async (event) => {
+      event.preventDefault();
+
+      if (!firstName) {
+         alert('Please enter a first name');
+      }
+
+      if (!lastName) {
+         alert('Please enter a last name');
+      }
+
+      try {
+         const userAuth = await createUserWithEmailAndPassword(email, password);
+         await updateProfile({
+            displayName: firstName,
+         });
+         dispatch(
+            login({
+               email: userAuth.user.email,
+               uid: userAuth.user.uid,
+               displayName: firstName,
+            })
+         );
+         navigate('/tesla-account');
+      } catch (error) {
+         console.log(error.message);
+      }
+   };
 
    return (
       <UserContainer>
@@ -68,7 +99,7 @@ const SignUp = () => {
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                />
-               <ButtonPrimary name="Sign Up" type="submit" />
+               <ButtonPrimary name="Sign Up" type="submit" onClick={signUp} />
             </UserForm>
             <UserDivider>
                <hr /> <span>OR</span> <hr />
