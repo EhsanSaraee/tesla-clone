@@ -11,7 +11,7 @@ const TeslaAccount = ({ isMenuOpen, setIsMenuOpen }) => {
       <TeslaAccountContainer>
          <TeslaAccountHeader>
             <TeslaAccountLogo>
-               <Link to="\">
+               <Link to="\tesla-account">
                   <img
                      src="https://assets.website-files.com/5e8fceb1c9af5c3915ec97a0/5ec2f037975ed372da9f6286_Tesla-Logo-PNG-HD.png"
                      alt="header"
@@ -35,7 +35,7 @@ const TeslaAccount = ({ isMenuOpen, setIsMenuOpen }) => {
          </TeslaAccountHeader>
          <TeslaAccountInfo>
             <TeslaAccountPerson>
-               <h4>{user?.displayName + "'s"} Tesla</h4>
+               <h4>Tesla</h4>
             </TeslaAccountPerson>
             <TeslaAccountInfoRight>
                <Link>Home</Link>
