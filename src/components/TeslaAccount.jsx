@@ -29,7 +29,7 @@ const TeslaAccount = ({ isMenuOpen, setIsMenuOpen }) => {
                <Link to="/tesla-account">Tesla Account</Link>
                <Link onClick={logout}>Logout</Link>
                <TeslaAccountMenu onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                  {isMenuOpen ? <CloseIcon /> : <MenuRoundedIcon />}
+                  {isMenuOpen ? <TeslaAccountCloseMenu /> : <MenuRoundedIcon />}
                </TeslaAccountMenu>
             </TeslaAccountLinks>
          </TeslaAccountHeader>
@@ -61,20 +61,92 @@ const TeslaAccount = ({ isMenuOpen, setIsMenuOpen }) => {
 
 const TeslaAccountContainer = styled.section``;
 
-const TeslaAccountHeader = styled.div``;
+const TeslaAccountHeader = styled.div`
+   padding: 7px 20px;
+   padding-top: 15px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background-color: #222222;
+   color: white;
+`;
 
-const TeslaAccountLogo = styled.div``;
+const TeslaAccountLogo = styled.div`
+   a {
+      img {
+         object-fit: contain;
+         width: 80px;
+         filter: brightness(0) invert(1);
+      }
+   }
+`;
 
-const TeslaAccountLinks = styled.div``;
+const TeslaAccountLinks = styled.div`
+   display: flex;
+   gap: 20px;
+   align-items: center;
 
-const TeslaAccountMenu = styled.div``;
+   a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 15px;
+      z-index: 0;
+   }
+`;
 
-const TeslaAccountInfo = styled.div``;
+const TeslaAccountMenu = styled.div`
+   z-index: 2;
 
-const TeslaAccountPerson = styled.div``;
+   .MuiSvgIcon-root {
+      cursor: pointer;
+   }
+`;
 
-const TeslaAccountInfoRight = styled.div``;
+const TeslaAccountCloseMenu = styled(CloseIcon)`
+   color: black;
+`;
 
-const TeslaAccountCar = styled.div``;
+const TeslaAccountInfo = styled.div`
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 60px 140px;
+   padding-bottom: 30px;
+`;
+
+const TeslaAccountPerson = styled.div`
+   h4 {
+      font-weight: 500;
+      text-transform: capitalize;
+      font-size: x-large;
+   }
+`;
+
+const TeslaAccountInfoRight = styled.div`
+   display: flex;
+   gap: 20px;
+
+   a {
+      text-decoration: none;
+      color: #393c41;
+      font-size: smaller;
+      transition: all 0.2s;
+      text-transform: capitalize;
+
+      &:hover {
+         color: black;
+         font-weight: 500;
+      }
+   }
+`;
+
+const TeslaAccountCar = styled.div`
+   display: grid;
+   place-items: center;
+   gap: 30px;
+   padding-bottom: 40px;
+`;
 
 export default TeslaAccount;
