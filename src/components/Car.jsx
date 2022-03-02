@@ -21,14 +21,50 @@ const Car = ({ imgSrc, model, testDrive }) => {
    );
 };
 
-const CarContainer = styled.section``;
+const CarContainer = styled.section`
+   display: grid;
+   place-items: center;
+   border-top: 1px solid #d0d1d2;
+`;
 
-const CarImg = styled.div``;
+const CarImg = styled.div`
+   img {
+      object-fit: contain;
+      width: 1000px;
+   }
+`;
 
-const CarModel = styled.h2``;
+const CarModel = styled.h2`
+   font-weight: 500;
+   font-size: xx-large;
+   margin-top: -180px;
+   text-transform: capitalize;
+`;
 
-const CarActions = styled.div``;
+const CarActions = styled.div`
+   display: flex;
+   align-items: center;
+   gap: 20px;
+   margin-top: -40px;
 
-const CarInfo = styled.p``;
+   button {
+      width: 230px;
+      margin-bottom: 30px;
+   }
+`;
+
+const CarInfo = styled.p`
+   max-width: 350px;
+   text-align: center;
+   font-size: smaller;
+   line-height: 1.5;
+   font-weight: 500;
+   color: #393c41;
+
+   span {
+      color: #3e6be2;
+      cursor: pointer;
+   }
+`;
 
 export default Car;
