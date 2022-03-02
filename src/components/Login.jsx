@@ -1,16 +1,34 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import { useState } from 'react';
 import ButtonPrimary from './ButtonPrimary';
 import ButtonSecondary from './ButtonSecondary';
+import { useDispatch } from 'react-redux';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { login } from '../features/userSlice';
 
 const Login = () => {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
 
-   const signIn = (event) => {
+   const signIn = async (event) => {
       event.preventDefault();
+      try {
+         const userAuth = await signInWithEmailAndPassword(email, password);
+         dispatch(
+            login({
+               email: userAuth.user.email,
+               uid: userAuth.user.uid,
+               displayName: userAuth.user.displayName,
+            })
+         );
+         navigate('/tesla-account');
+      } catch (error) {
+         console.log(error.message);
+      }
    };
 
    return (
